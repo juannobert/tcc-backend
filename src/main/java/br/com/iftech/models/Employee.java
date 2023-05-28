@@ -16,13 +16,15 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Employee extends Person{
+public class Employee extends User{
 	
 	@Column(nullable = false,length = 11)
 	private String cpf;
 	
 	@Column(nullable = false)
 	private Date dataNascimento;
+	
+	
 	
 	@Column(nullable = false,length = 13)
 	private String telefone;
