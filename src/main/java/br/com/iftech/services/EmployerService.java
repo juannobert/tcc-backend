@@ -3,6 +3,7 @@ package br.com.iftech.services;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.iftech.dtos.requests.EmployerRequest;
@@ -20,9 +21,12 @@ public class EmployerService {
 	@Autowired
 	private EmployerMapper mapper;
 	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
 	public EmployerResponse save(EmployerRequest request) {
 		Employer model = mapper.toModel(request);
-		model.setSenha(request.getSenha());
+		model.setSenha(passwordEncoder.encode(request.getSenha()));
 		model.setCodigo(gerarCodigo());
 		model = repository.save(model);
 		
