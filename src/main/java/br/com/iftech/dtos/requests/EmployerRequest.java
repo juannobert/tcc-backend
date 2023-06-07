@@ -17,7 +17,8 @@ public class EmployerRequest extends UserRequest{
 	@NotNull
 	@NotBlank
 	@Pattern(
-			regexp = "([0-9]{2}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[\\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[-]?[0-9]{2})"
+			regexp = "([0-9]{2}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[\\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[-]?[0-9]{2})",
+			message = "CPF ou CNPJ inválidos"
 	)
 	private String cpfCnpj;
 	

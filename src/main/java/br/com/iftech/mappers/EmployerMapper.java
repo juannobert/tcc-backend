@@ -7,24 +7,21 @@ import br.com.iftech.dtos.responses.EmployerResponse;
 import br.com.iftech.models.Employer;
 
 @Component
-public class EmployerMapper {
+public class EmployerMapper  extends UserMapper{
 
 	public Employer toModel(EmployerRequest request) {
 		Employer model = new Employer();
-		model.setEmail(request.getEmail());
+		super.toModelBase(request, model);
 		model.setEndereco(request.getEndereco());
 		model.setCpfCnpj(request.getCpfCnpj());
-		model.setNome(request.getNome());
 		return model;
 	}
 	
 	public EmployerResponse toResponse(Employer model) {
 		EmployerResponse response = new EmployerResponse();
-		response.setId(model.getId());
+		super.toResponseBase(model, response);
 		response.setCodigo(model.getCodigo());
 		response.setCpfCnpj(model.getCpfCnpj());
-		response.setEmail(model.getEmail());
-		response.setNome(model.getNome());
 		response.setEndereco(model.getEndereco());
 		return response;
 	}

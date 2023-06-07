@@ -28,10 +28,13 @@ public class UserAuthService implements UserDetailsService{
 		Optional<Employer> employerUser = employerRepository.findByEmail(username);
 		Optional<Employee> employeeUser = employeeRepository.findByEmail(username);
 		
-		if(employerUser.isPresent()) 
+		if(employerUser.isPresent()) {
 			return employerUser.get();
-		else if(employeeUser.isPresent())
+			
+		}
+		else if(employeeUser.isPresent()) {
 			return employeeUser.get();
+		}
 		throw new UsernameNotFoundException("Usuário não existe");
 		
 		

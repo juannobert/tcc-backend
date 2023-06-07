@@ -10,15 +10,14 @@ import br.com.iftech.models.Employer;
 import br.com.iftech.repositories.EmployerRepository;
 
 @Component
-public class EmployeeMapper {
+public class EmployeeMapper extends UserMapper{
 	
 	@Autowired
 	private EmployerRepository employerRepository;
 	
 	public Employee toModel(EmployeeRequest request) {
 		Employee model = new Employee();
-		model.setEmail(request.getEmail());
-		model.setNome(request.getSenha());
+		super.toModelBase(request, model);
 		model.setCpf(request.getCpf());
 		model.setTelefone(request.getTelefone());
 		model.setCargaHorariaMensal(request.getCargaHorariaMensal());
@@ -29,15 +28,12 @@ public class EmployeeMapper {
 	
 	public EmployeeResponse toResponse(Employee model) {
 		EmployeeResponse response = new EmployeeResponse();
-		response.setId(model.getId());	
-		response.setEmail(model.getEmail());
-		response.setNome(model.getNome());
+		super.toResponseBase(model, response);
 		response.setTelefone(model.getTelefone());
 		response.setCpf(model.getCpf());
 		response.setDataNascimento(model.getDataNascimento());
 		response.setCargaHorariaMensal(model.getCargaHorariaMensal());
 		response.setEmpregadorId(model.getEmpregador().getId());
-		
 		return response;
 		
 	}

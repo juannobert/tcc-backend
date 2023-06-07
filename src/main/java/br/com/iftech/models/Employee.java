@@ -18,6 +18,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Employee extends User{
 	
+
+	private static final long serialVersionUID = 1L;
+
 	@Column(nullable = false,length = 11)
 	private String cpf;
 	
