@@ -10,4 +10,6 @@ import lombok.NoArgsConstructor;
 public class TokenResponse {
 	
 	private String accessToken;
+	
+	private int expiresIn;
 }

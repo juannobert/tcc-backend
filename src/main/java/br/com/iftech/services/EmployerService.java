@@ -11,6 +11,7 @@ import br.com.iftech.dtos.responses.EmployerResponse;
 import br.com.iftech.mappers.EmployerMapper;
 import br.com.iftech.models.Employer;
 import br.com.iftech.repositories.EmployerRepository;
+import br.com.iftech.validations.anotations.UserValidation;
 
 @Service
 public class EmployerService {
@@ -24,11 +25,19 @@ public class EmployerService {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
+	@Autowired
+	private UserValidation userValidation;
+	
 	public EmployerResponse save(EmployerRequest request) {
 		Employer model = mapper.toModel(request);
 		model.setSenha(passwordEncoder.encode(request.getSenha()));
 		model.setCodigo(gerarCodigo());
+		
+		userValidation.validar(model);
 		model = repository.save(model);
+		
+		
+		
 		
 		return mapper.toResponse(model);
 		

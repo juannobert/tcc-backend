@@ -35,9 +35,10 @@ public class SecurityConfig {
 	SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests.anyRequest().permitAll())
 				.csrf(csrfCustomizer -> csrfCustomizer.disable())
-
+				
 				.userDetailsService(userDetailsService)
-				.addFilterBefore(accessTokenRequestFilter, UsernamePasswordAuthenticationFilter.class);
+				.addFilterBefore(accessTokenRequestFilter, UsernamePasswordAuthenticationFilter.class)
+				.cors();
 		return httpSecurity.build();
 	}
 	

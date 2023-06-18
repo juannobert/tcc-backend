@@ -8,7 +8,7 @@ public class UserMapper {
 	
 	public void toModelBase(UserRequest request,User model) {
 		model.setEmail(request.getEmail());
-		model.setNome(request.getSenha());
+		model.setNome(request.getNome());
 	}
 	
 	public void toResponseBase(User model,UserResponse response) {

@@ -29,7 +29,7 @@ public class Employee extends User{
 	
 	
 	
-	@Column(nullable = false,length = 13)
+	@Column(nullable = false,length = 15)
 	private String telefone;
 	
 	
