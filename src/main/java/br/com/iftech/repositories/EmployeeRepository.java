@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import br.com.iftech.models.Employee;
 import br.com.iftech.models.User;
 
-public interface EmployeeRepository extends JpaRepository<Employee, Integer>{
+public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 
 	Optional<Employee> findByEmail(String email);
 	

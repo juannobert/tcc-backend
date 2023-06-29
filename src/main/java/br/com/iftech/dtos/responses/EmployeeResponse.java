@@ -20,5 +20,5 @@ public class EmployeeResponse extends UserResponse{
 	
 	private Integer cargaHorariaMensal;
 	
-	private Integer empregadorId;
+	private Long empregadorId;
 }

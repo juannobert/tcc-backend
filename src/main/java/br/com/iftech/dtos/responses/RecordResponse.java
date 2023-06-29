@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class RecordResponse {
 	
-	private Integer id;
+	private Long id;
 
 	private LocalDateTime horaEntrada;
 
 	private LocalDateTime horaSaida;
 	
-	private Integer employeeId;
+	private Long employeeId;
 }

@@ -50,7 +50,7 @@ public class TokenService {
 		Map<String,Object> claims = new HashMap<>();
 		
 		Instant dataHoraAtual = Instant.now();
-		Instant dataHoraExpiracao = dataHoraAtual.plusSeconds(40);
+		Instant dataHoraExpiracao = dataHoraAtual.plusSeconds(tokenExpiration);
 		
 		//Gerando Token JWT
 		return Jwts.builder()

@@ -38,7 +38,7 @@ public class EmployeeService {
 		return mapper.toResponse(model);
 	}
 	
-	public EmployeeResponse findById(Integer id) {
+	public EmployeeResponse findById(Long id) {
 		return repository.findById(id)
 				.map(mapper::toResponse)
 				.orElseThrow(() -> new RuntimeException("usuáruo não encontrado"));

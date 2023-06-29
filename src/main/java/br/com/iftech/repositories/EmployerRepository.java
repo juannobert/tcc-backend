@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import br.com.iftech.models.Employer;
 import br.com.iftech.models.User;
 
-public interface EmployerRepository extends JpaRepository<Employer, Integer>{
+public interface EmployerRepository extends JpaRepository<Employer, Long>{
 	
 	boolean existsByCodigo(String codigo);
 	Employer findByCodigo(String codigo);

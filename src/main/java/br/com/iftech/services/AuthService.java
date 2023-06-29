@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.iftech.dtos.requests.TokenRequest;
 import br.com.iftech.dtos.responses.TokenResponse;
+import br.com.iftech.utils.UserUtils;
 
 @Service
 public class AuthService {
@@ -17,6 +18,9 @@ public class AuthService {
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	
+	@Autowired
+	private UserUtils userUtils;
 	
 	
 	
@@ -33,13 +37,16 @@ public class AuthService {
 		//Autenticando usuário
 		authenticationManager.authenticate(autenticacao);
 		
+		Long userId = userUtils.findUserByEmail(email).getId();
+		
+		
 		
 		//Gerando token
 		//Email vai ser o subject
 		String access = tokenService.gerarAccessToken(email);
 		
 		
-		return new TokenResponse(access,expiresIn);
+		return new TokenResponse(access,expiresIn,userId);
 	}
 
 }

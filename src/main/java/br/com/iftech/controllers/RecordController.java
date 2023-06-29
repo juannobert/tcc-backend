@@ -1,9 +1,14 @@
 package br.com.iftech.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.iftech.dtos.requests.RecordRequest;
@@ -14,12 +19,27 @@ import br.com.iftech.services.RecordService;
 @RequestMapping("/registros")
 public class RecordController {
 
-	
 	@Autowired
 	private RecordService service;
 	
-	@GetMapping("/buscar")
-	public RecordResponse registrar(@RequestBody RecordRequest request) {
-		return service.registrar(request);
+	@PostMapping("/registrar/{id}")
+	public RecordResponse registrar(@PathVariable Long id,@RequestBody RecordRequest request) {
+		return service.registrar(request,id);
 	}
+	
+	@GetMapping("/listar/{userId}")
+	public Page<RecordResponse> listar(
+			@PathVariable Long userId,
+			@RequestParam(name = "mes",defaultValue = "0") Integer mes,
+			Pageable pageable){
+		return service.listar(userId, pageable,mes);
+	}
+	
+	
+	@GetMapping("/diario/{id}")
+	public RecordResponse registroDiario(@PathVariable Long id) {
+		return service.buscarRegistroDiario(id);
+	}
+	
+	
 }
