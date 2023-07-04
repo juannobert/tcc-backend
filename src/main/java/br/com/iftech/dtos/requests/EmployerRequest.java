@@ -24,6 +24,10 @@ public class EmployerRequest extends UserRequest{
 	
 	@NotNull
 	@NotBlank
+	private String senha;
+	
+	@NotNull
+	@NotBlank
 	private String endereco;
 	
 }

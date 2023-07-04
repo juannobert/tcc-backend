@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.iftech.dtos.requests.EmployeeRequest;
+import br.com.iftech.dtos.requests.EmployeeUpdateRequest;
 import br.com.iftech.dtos.responses.EmployeeResponse;
 import br.com.iftech.models.Employee;
 import br.com.iftech.models.Employer;
@@ -38,6 +39,15 @@ public class EmployeeMapper extends UserMapper{
 		
 	}
 	
+	public Employee updateToModel(Employee model,EmployeeUpdateRequest request) {
+		model.setCpf(request.getCpf());
+		model.setEmail(request.getEmail());
+		model.setNome(request.getNome());
+		model.setTelefone(request.getTelefone());
+		model.setDataNascimento(request.getDataNascimento());
+		
+		return model;
+	}
 	
 	private Employer getEmployerByCodigo(String codigo) {
 		return employerRepository.findByCodigo(codigo);

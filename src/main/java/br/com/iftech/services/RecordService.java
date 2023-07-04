@@ -1,6 +1,5 @@
 package br.com.iftech.services;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +29,7 @@ public class RecordService {
 	private RecordMapper mapper;
 	
 	public RecordResponse registrar(RecordRequest request,Long userId) {
-		
 		Employee employee = findEmployee(userId);
-		
-		
 		Optional<Record> recordOptional = repository.buscarRegistro(userId);
 		Record record;
 		if(recordOptional.isPresent()) {
@@ -52,7 +48,6 @@ public class RecordService {
 		
 	}
 	
-	
 	public Page<RecordResponse> listar(Long userId,Pageable pageable,Integer mes) {
 		findEmployee(userId);
 		return repository.listarRegistros(userId, pageable,mes)
@@ -65,12 +60,8 @@ public class RecordService {
 		return mapper.toResponse(repository.buscarRegistroRecente(id));
 	}
 	
-	
 	private Employee findEmployee(Long userId) {
 		return employeeRepository.findById(userId).
 				orElseThrow(() -> new UsernameNotFoundException("Usuário inválido"));
 	}
-	
-	
-	
 }

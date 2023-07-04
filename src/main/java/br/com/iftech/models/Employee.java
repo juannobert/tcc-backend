@@ -21,13 +21,11 @@ public class Employee extends User{
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(nullable = false,length = 11)
+	@Column(nullable = false,length = 14)
 	private String cpf;
 	
 	@Column(nullable = false)
 	private Date dataNascimento;
-	
-	
 	
 	@Column(nullable = false,length = 15)
 	private String telefone;

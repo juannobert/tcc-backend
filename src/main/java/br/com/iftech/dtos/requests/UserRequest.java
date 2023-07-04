@@ -17,9 +17,7 @@ public class UserRequest {
 	@NotNull(message = "O email não pode ser nulo!")
 	private String email;
 	
-	@NotNull
-	@NotBlank
-	private String senha;
+	
 	
 	@NotNull
 	@NotBlank
