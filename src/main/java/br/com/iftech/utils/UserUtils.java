@@ -31,8 +31,10 @@ public class UserUtils {
 			
 		}
 		else if(employeeUser.isPresent()) {
+			System.out.println(employeeUser.get().getAuthorities().toString());
 			return employeeUser.get();
 		}
+		
 		throw new UsernameNotFoundException("Usuário não existe");
 		
 		

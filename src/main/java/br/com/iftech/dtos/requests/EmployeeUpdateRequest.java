@@ -4,10 +4,8 @@ import java.util.Date;
 
 import org.hibernate.validator.constraints.br.CPF;
 
-import br.com.iftech.constraints.EmpregadorExistsByCodigo;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
