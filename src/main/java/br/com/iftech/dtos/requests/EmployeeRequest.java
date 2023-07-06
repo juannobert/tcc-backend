@@ -34,7 +34,6 @@ public class EmployeeRequest extends UserRequest{
 	@NotEmpty
 	private String telefone;
 	
-	@NotNull
 	private Integer cargaHorariaMensal;
 	
 	

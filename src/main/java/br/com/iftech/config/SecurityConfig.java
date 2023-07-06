@@ -16,7 +16,6 @@ import br.com.iftech.filters.AccessTokenRequestFilter;
 
 @Configuration
 @EnableMethodSecurity(prePostEnabled = true)
-
 public class SecurityConfig {
 
 	@Autowired

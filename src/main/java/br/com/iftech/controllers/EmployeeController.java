@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.iftech.dtos.requests.EmployeeRequest;
 import br.com.iftech.dtos.requests.EmployeeUpdateRequest;
 import br.com.iftech.dtos.responses.EmployeeResponse;
+import br.com.iftech.permissions.PermissionsConfig;
 import br.com.iftech.services.EmployeeService;
 import jakarta.validation.Valid;
 
@@ -27,11 +28,13 @@ public class EmployeeController {
 		return service.save(request);
 	}
 	
+	@PermissionsConfig.isEmployee
 	@GetMapping("/{id}")
 	public EmployeeResponse getById(@PathVariable Long id) {
 		return service.findById(id);
 	}
 	
+	@PermissionsConfig.isEmployee
 	@PutMapping("/{id}")
 	public EmployeeResponse updateEmployee(@PathVariable Long id, @Valid @RequestBody EmployeeUpdateRequest request) {
 		return service.update(id, request);
