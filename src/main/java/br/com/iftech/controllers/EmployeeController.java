@@ -1,6 +1,8 @@
 package br.com.iftech.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.iftech.dtos.requests.DeleteRequest;
 import br.com.iftech.dtos.requests.EmployeeRequest;
 import br.com.iftech.dtos.requests.EmployeeUpdateRequest;
 import br.com.iftech.dtos.responses.EmployeeResponse;
@@ -38,5 +41,11 @@ public class EmployeeController {
 	@PutMapping("/{id}")
 	public EmployeeResponse updateEmployee(@PathVariable Long id, @Valid @RequestBody EmployeeUpdateRequest request) {
 		return service.update(id, request);
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deleteEmployee(@PathVariable Long id) {
+		service.delete(id);
+		return ResponseEntity.noContent().build();
 	}
 }

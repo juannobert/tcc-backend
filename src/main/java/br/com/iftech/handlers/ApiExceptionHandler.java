@@ -15,12 +15,20 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import br.com.iftech.exceptions.UserNotExistsException;
 import br.com.iftech.exceptions.ValidationException;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
-	
+	/*
+	@ExceptionHandler(UserNotExistsException.class)
+	public ResponseEntity<Object> handleUserNotExistsException(UserNotExistsException e) {
+		
+		return ResponseEntity.badRequest().body(null);
+
+	}
+	*/
 	
 	@ExceptionHandler(ValidationException.class)
 	public ResponseEntity<Object> handleValidacaoException(ValidationException e) {

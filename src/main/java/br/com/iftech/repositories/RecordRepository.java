@@ -20,5 +20,5 @@ public interface RecordRepository extends JpaRepository<Record, Integer> {
 	//SELECT * FROM record WHERE hora_entrada = (SELECT MAX(hora_entrada) FROM Record);
 	
 	@Query(nativeQuery = true,value = "SELECT * FROM record WHERE employee_id = :userId AND hora_entrada = (SELECT MAX(hora_entrada) FROM Record)")
-	Record buscarRegistroRecente(Long userId);
+	Optional<Record> buscarRegistroRecente(Long userId);
 }

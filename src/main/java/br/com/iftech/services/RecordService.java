@@ -56,8 +56,9 @@ public class RecordService {
 	}
 	
 	public RecordResponse buscarRegistroDiario(Long id) {
-		
-		return mapper.toResponse(repository.buscarRegistroRecente(id));
+		var model = repository.buscarRegistroRecente(id);
+		if(model.isPresent()) return mapper.toResponse(model.get());
+		return new RecordResponse();
 	}
 	
 	private Employee findEmployee(Long userId) {
