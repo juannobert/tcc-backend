@@ -36,8 +36,13 @@ public class UserUtils {
 		}
 		
 		throw new UsernameNotFoundException("Usuário não existe");
-		
-		
+	}
+	
+	public void saveUser(User user) {
+		if(user instanceof Employee)
+			employeeRepository.save((Employee) user);
+		else
+			employerRepository.save((Employer) user);
 	}
 	
 

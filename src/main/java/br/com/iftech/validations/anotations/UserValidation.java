@@ -29,9 +29,6 @@ public class UserValidation {
 			FieldError fieldError = new FieldError(user.getClass().getName(), "email", user.getEmail(), false,
 					null, null, msg);
 			throw new UserExistsException(msg, fieldError);
-			
 		}
 	}
-	
-
 }

@@ -1,5 +1,7 @@
 package br.com.iftech.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.iftech.dtos.requests.RecordRequest;
+import br.com.iftech.dtos.responses.MonthFilterResponse;
 import br.com.iftech.dtos.responses.RecordResponse;
+import br.com.iftech.dtos.responses.WorkingDaysFilterResponse;
 import br.com.iftech.services.RecordService;
 
 @RestController
@@ -21,6 +25,7 @@ public class RecordController {
 
 	@Autowired
 	private RecordService service;
+	
 	
 	@PostMapping("/registrar/{id}")
 	public RecordResponse registrar(@PathVariable Long id,@RequestBody RecordRequest request) {
@@ -41,5 +46,13 @@ public class RecordController {
 		return service.buscarRegistroDiario(id);
 	}
 	
+	@GetMapping("/filtro/mensal/{id}")
+	public List<MonthFilterResponse> filtroMensal(@PathVariable Long id){
+		return service.filtroMensal(id);
+	}
+	@GetMapping("/filtro/diario/{id}")
+	public List<WorkingDaysFilterResponse> filtroDiario(@PathVariable Long id){
+		return service.filtroDiario(id);
+	}
 	
 }
