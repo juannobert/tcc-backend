@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.token.KeyBasedPersistenceTokenService;
 import org.springframework.security.core.token.SecureRandomFactoryBean;
 import org.springframework.security.core.token.Token;
@@ -31,6 +32,9 @@ public class UserPasswordService {
 
 	@Autowired
 	private EmailService emailService;
+	
+	@Value("${br.com.iftech.ponto-go.web.url}")
+	private String urlWeb;
 
 	@SneakyThrows
 	public String generateToken(User user) {
@@ -87,8 +91,10 @@ public class UserPasswordService {
 	}
 
 	private Map<String, Object> createProps(String code) {
+		String link = urlWeb + "/" + code;
+		System.out.println(link);
 		HashMap<String, Object> props = new HashMap<String, Object>();
-		props.put("code", code);
+		props.put("code", link);
 		return props;
 	}
 
