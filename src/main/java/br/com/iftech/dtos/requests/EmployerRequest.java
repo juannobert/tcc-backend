@@ -3,7 +3,6 @@ package br.com.iftech.dtos.requests;
 import br.com.iftech.validations.anotations.CpfOrCnpj;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
