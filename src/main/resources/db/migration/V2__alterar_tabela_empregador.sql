@@ -1,0 +1,1 @@
+alter table if exists employer alter column cpf_cnpj set data type varchar(18)

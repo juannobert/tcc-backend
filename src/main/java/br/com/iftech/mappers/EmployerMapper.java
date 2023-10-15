@@ -3,6 +3,7 @@ package br.com.iftech.mappers;
 import org.springframework.stereotype.Component;
 
 import br.com.iftech.dtos.requests.EmployerRequest;
+import br.com.iftech.dtos.requests.EmployerUpdateRequest;
 import br.com.iftech.dtos.responses.EmployerResponse;
 import br.com.iftech.models.Employer;
 
@@ -24,5 +25,13 @@ public class EmployerMapper  extends UserMapper{
 		response.setCpfCnpj(model.getCpfCnpj());
 		response.setEndereco(model.getEndereco());
 		return response;
+	}
+	
+	public Employer updateToModel(Employer model,EmployerUpdateRequest request) {
+		model.setCpfCnpj(request.getCpfCnpj());
+		model.setEmail(request.getEmail());
+		model.setNome(request.getNome());
+		model.setEndereco(request.getEndereco());
+		return model;
 	}
 }

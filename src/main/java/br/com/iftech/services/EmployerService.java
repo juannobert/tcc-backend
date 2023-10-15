@@ -7,7 +7,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.iftech.dtos.requests.EmployerRequest;
+import br.com.iftech.dtos.requests.EmployerUpdateRequest;
 import br.com.iftech.dtos.responses.EmployerResponse;
+import br.com.iftech.exceptions.UserNotExistsException;
 import br.com.iftech.mappers.EmployerMapper;
 import br.com.iftech.models.Employer;
 import br.com.iftech.repositories.EmployerRepository;
@@ -21,46 +23,58 @@ public class EmployerService {
 
 	@Autowired
 	private EmployerMapper mapper;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	private UserValidation userValidation;
-	
+
 	public EmployerResponse save(EmployerRequest request) {
 		Employer model = mapper.toModel(request);
 		model.setSenha(passwordEncoder.encode(request.getSenha()));
 		model.setCodigo(gerarCodigo());
-		
+
 		userValidation.validar(model);
 		model = repository.save(model);
-		
-		
-		
-		
+
 		return mapper.toResponse(model);
+
+	}
+	
+	public EmployerResponse findById(Long id) {
+		return repository.findById(id).map(mapper::toResponse)
+		.orElseThrow(() -> new UserNotExistsException("Usuário não existe"));
 		
 	}
 	
-	
+	public EmployerResponse update(Long id, EmployerUpdateRequest request) {
+		Employer model = repository.findById(id).orElseThrow(() -> new UserNotExistsException("Usuário não existe"));
+
+		mapper.updateToModel(model, request);
+
+		userValidation.validar(model);
+
+		model = repository.save(model);
+		return mapper.toResponse(model);
+	}
+
 	private String gerarCodigo() {
 		String codigo = "";
 		Random r = new Random();
-		for(int i = 1; i <= 6;i++) {
+		for (int i = 1; i <= 6; i++) {
 			codigo += String.valueOf(r.nextInt(9));
 		}
-		
+
 		verificarCodigo(codigo);
 		return codigo;
-		
+
 	}
-	
+
 	private void verificarCodigo(String codigo) {
-		if(repository.existsByCodigo(codigo))
+		if (repository.existsByCodigo(codigo))
 			gerarCodigo();
-		
+
 	}
-	
-	
+
 }

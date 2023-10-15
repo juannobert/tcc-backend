@@ -1,5 +1,7 @@
 package br.com.iftech.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -58,6 +60,12 @@ public class EmployeeService {
 		repository.findById(id).orElseThrow(() -> new UserNotExistsException("Usuário não existe"));
 
 		repository.deleteById(id);
+	}
+	
+	public List<EmployeeResponse> employeeFilter(Long employerId){
+		return repository.filterEmployee(employerId)
+				.stream().map(mapper::toResponse)
+				.toList();
 	}
 
 }
