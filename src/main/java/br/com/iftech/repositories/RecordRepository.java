@@ -29,7 +29,7 @@ public interface RecordRepository extends JpaRepository<Record, Integer> {
 	@Query(nativeQuery = true,value="select EXTRACT(MONTH FROM hora_saida) AS mes, "
 			+ "SUM(EXTRACT(EPOCH FROM (hora_saida - hora_entrada))) / 3600 AS horas_trabalhadas "
 			+ "from record "
-			+ "WHERE employee_id = :employeeId "
+			+ "WHERE employee_id = :employeeId AND EXTRACT(MONTH FROM hora_saida) IS NOT NULL "
 			+ "GROUP BY EXTRACT(MONTH FROM hora_saida)")
 	List<MonthFilterResponse> listarFiltroMensal(Long employeeId);
 	

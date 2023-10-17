@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="funcionario" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c437bee7-7b6b-4773-83bd-d3fcb642b375">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="empregador_id" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT nome, email, data_nascimento,telefone
+FROM employee
+ WHERE empregador_id = $P{empregador_id}]]>
+	</queryString>
+	<field name="nome" class="java.lang.String"/>
+	<field name="telefone" class="java.lang.String"/>
+	<field name="dataNascimento" class="java.util.Date"/>
+	<field name="email" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="59" splitType="Stretch">
+			<staticText>
+				<reportElement x="-20" y="20" width="595" height="30" uuid="842183c0-8d7e-4798-9924-a36b89d2722c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Copperplate Gothic Bold" size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Relatório de funcionários]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="46" width="555" height="1" uuid="59b0a081-6b4a-476b-a38b-f7afc48cab22">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="25" splitType="Stretch">
+			<textField pattern="HH:mm">
+				<reportElement x="420" y="1" width="140" height="18" uuid="7df2e5bf-ae7a-46a9-b774-e97c44c5b5d5"/>
+				<textElement>
+					<font fontName="Segoe UI" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Impresso em: " + new java.text.SimpleDateFormat("dd/MM/yyyy").format(new Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="20" y="3" width="160" height="15" uuid="250cde2e-5f04-4b3d-9f6a-4541f79a698e"/>
+				<textFieldExpression><![CDATA["https://easy-point.netlify.app/"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="5" width="100" height="20" uuid="47200a0e-2e33-445a-b108-54e4aa23f236"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="5" width="100" height="20" uuid="d1759a03-9863-4e74-aa5d-3e46474842db"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="5" width="100" height="20" uuid="d6072593-6eb5-4403-8f24-0b40e024dfe5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="5" width="160" height="20" uuid="d50fed97-34c7-4969-8735-249987359cfb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data de nascimento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement x="30" y="-9" width="100" height="19" uuid="8aaf0ca5-5116-4f30-a19e-c91ea7f138d9"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="-9" width="100" height="18" uuid="2fbc0b09-eba6-4347-b306-2ece7c57d084"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="-9" width="100" height="18" uuid="29f86f2c-86aa-4a51-8350-fe5b18b2de41"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{telefone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="-9" width="160" height="18" uuid="12d4ede8-7123-4371-baf6-7a179cf7b1fc"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{dataNascimento})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="24" width="100" height="30" uuid="b05f27eb-c6a9-4253-ac62-88920516c01f"/>
+				<textElement>
+					<font fontName="Segoe UI" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página: " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
