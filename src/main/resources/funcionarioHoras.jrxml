@@ -32,7 +32,7 @@
 			<textField pattern="HH:mm">
 				<reportElement x="420" y="1" width="140" height="18" uuid="7df2e5bf-ae7a-46a9-b774-e97c44c5b5d5"/>
 				<textElement>
-					<font fontName="Segoe UI" isBold="true"/>
+					<font fontName="DejaVu Sans" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Impresso em: " + new java.text.SimpleDateFormat("dd/MM/yyyy").format(new Date())]]></textFieldExpression>
 			</textField>
@@ -47,14 +47,14 @@
 			<staticText>
 				<reportElement x="180" y="0" width="100" height="20" uuid="47200a0e-2e33-445a-b108-54e4aa23f236"/>
 				<textElement textAlignment="Center">
-					<font fontName="Verdana" size="14" isBold="true"/>
+					<font fontName="DejaVu Sans" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Mês]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="280" y="0" width="180" height="20" uuid="d1759a03-9863-4e74-aa5d-3e46474842db"/>
 				<textElement textAlignment="Center">
-					<font fontName="Verdana" size="14" isBold="true"/>
+					<font fontName="DejaVu Sans" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Horas Trabalhadas]]></text>
 			</staticText>
@@ -82,7 +82,7 @@
 			<textField>
 				<reportElement x="1" y="24" width="100" height="30" uuid="b05f27eb-c6a9-4253-ac62-88920516c01f"/>
 				<textElement>
-					<font fontName="Segoe UI" isBold="true"/>
+					<font fontName="DejaVu Sans" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Página: " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
