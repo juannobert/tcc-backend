@@ -36,4 +36,10 @@ public class ReportController {
 		return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF).body(service.generateReportHoras(id));
 	}
 
+	@GetMapping("/funcionario/registro/{id}")
+	public ResponseEntity<byte[]> relatorioFuncionarioRegistro(@PathVariable Long id) throws FileNotFoundException, JRException{
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Disposition", "inline; filename=citiesreport.pdf");
+		return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF).body(service.generateReportRegistros(id));
+	}
 }

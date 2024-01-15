@@ -16,6 +16,7 @@
 			<staticText>
 				<reportElement x="-20" y="20" width="595" height="30" uuid="842183c0-8d7e-4798-9924-a36b89d2722c"/>
 				<textElement textAlignment="Center">
+				<font fontName="DejaVu Sans" size="22" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Relatório de Horas Trabalhadas]]></text>
 			</staticText>
@@ -31,9 +32,7 @@
 		<band height="25" splitType="Stretch">
 			<textField pattern="HH:mm">
 				<reportElement x="420" y="1" width="140" height="18" uuid="7df2e5bf-ae7a-46a9-b774-e97c44c5b5d5"/>
-				<textElement>
-					<font fontName="DejaVu Sans" isBold="true"/>
-				</textElement>
+				
 				<textFieldExpression><![CDATA["Impresso em: " + new java.text.SimpleDateFormat("dd/MM/yyyy").format(new Date())]]></textFieldExpression>
 			</textField>
 			<textField>

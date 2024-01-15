@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import br.com.iftech.dtos.responses.MonthFilterResponse;
+import br.com.iftech.dtos.responses.RegisterFilterResponse;
 import br.com.iftech.dtos.responses.WorkingDaysFilterResponse;
 import br.com.iftech.models.Record;
 public interface RecordRepository extends JpaRepository<Record, Integer> {
@@ -39,4 +40,15 @@ public interface RecordRepository extends JpaRepository<Record, Integer> {
 			+ "WHERE employee_id = :employeeId AND  hora_saida IS NOT NULL "
 			+ "GROUP BY EXTRACT(MONTH FROM hora_saida)")
 	List<WorkingDaysFilterResponse> listarDiasTrabalhadosMensalmente(Long employeeId);
+	
+	@Query(nativeQuery = true, value = "SELECT hora_entrada, "
+			+ "hora_saida,e.nome "
+			+ "FROM record "
+			+ "INNER JOIN employee e on record.employee_id =e.id "
+			+ "WHERE "
+			+ "record.employee_id =  :employeeId")
+	List<RegisterFilterResponse> litsarRegistroDeTrabalho(Long employeeId);
+	
+	
+	
 }

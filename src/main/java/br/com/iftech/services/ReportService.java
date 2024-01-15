@@ -74,5 +74,30 @@ public class ReportService {
 
 		
 	}
+	
+	public byte[] generateReportRegistros(Long id) throws JRException, FileNotFoundException {
+		Map<String, Object> parameters = new HashMap<>();
+
+		JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(recordRepoisotory.litsarRegistroDeTrabalho(id));
+		JasperReport compileReport = JasperCompileManager
+				.compileReport(new FileInputStream("src/main/resources/registro.jrxml"));
+		
+		parameters.put("empregado_id", id);
+
+		JasperPrint jasperPrint = JasperFillManager.fillReport(compileReport, parameters,beanCollectionDataSource);
+
+		// JasperExportManager.exportReportToPdfFile(jasperPrint,
+		// System.currentTimeMillis() + ".pdf");
+
+		byte data[] = JasperExportManager.exportReportToPdf(jasperPrint);
+
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Disposition", "inline; filename=citiesreport.pdf");
+
+		return data;
+
+		
+	}
 
 }
