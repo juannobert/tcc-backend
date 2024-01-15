@@ -3,11 +3,11 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Cherry" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13acf49e-4913-4d1b-bccc-113817ad15d1">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
-	<style name="Title" forecolor="#FFFFFF" fontName="DejaVu Sans" fontSize="50" isBold="false"/>
-	<style name="SubTitle" forecolor="#CCCCCC" fontName="DejaVu Sans" fontSize="18" isBold="false"/>
-	<style name="Column header" forecolor="#666666" fontName="DejaVu Sans" fontSize="14" isBold="true"/>
-	<style name="Detail" mode="Transparent" fontName="DejaVu Sans"/>
-	<style name="Row" mode="Transparent" fontName="DejaVu Sans" pdfFontName="DejaVu Sans">
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
 		<conditionalStyle>
 			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
 			<style mode="Opaque" backcolor="#F0EFEF"/>
@@ -20,8 +20,7 @@
 FROM record
 INNER JOIN employee e on record.employee_id =e.id 
 WHERE 
-	 record.employee_id =   $P{empregado_id} 
-	 ]]>
+	 record.employee_id =   $P{empregado_id}]]>
 	</queryString>
 	<field name="hora_entrada" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.name" value="hora_entrada"/>
@@ -103,7 +102,7 @@ WHERE
 					<textElement>
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{hora_entrada}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format($F{hora_entrada})]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
 					<reportElement style="Detail" positionType="Float" x="277" y="0" width="277" height="18" uuid="b14360a6-ec97-44b4-bbdc-9a18d65e14fa">
@@ -112,7 +111,7 @@ WHERE
 					<textElement>
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{hora_saida}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format($F{hora_entrada})]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
